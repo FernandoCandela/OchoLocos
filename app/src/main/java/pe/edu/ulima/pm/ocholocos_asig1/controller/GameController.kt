@@ -15,10 +15,10 @@ class GameController {
 }
 fun main(args:Array<String>){
 
-    var baraja = Baraja(52);
+    var baraja = Baraja();
     baraja.crearBaraja();
     baraja.barajar();
     baraja.getFirstCarta();
-    baraja.repartirCartas(8);
+    baraja.getListofCartas(8);
 
 }
