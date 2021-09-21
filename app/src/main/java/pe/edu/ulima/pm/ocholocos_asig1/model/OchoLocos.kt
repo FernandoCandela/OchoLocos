@@ -29,5 +29,10 @@ class OchoLocos(var jugadores: MutableList<Jugador>) {
             this.turno++;
         }
     }
+    fun cartasCompatibles(){
+        //Carta
+    }
+
+
 
 }

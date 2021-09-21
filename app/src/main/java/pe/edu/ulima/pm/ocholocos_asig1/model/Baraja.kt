@@ -5,12 +5,12 @@ public class Baraja {
     private val limitePalos: Int = 13;
     private val numCartas: Int = 52;
     private val palos = arrayOf("Espadas", "Corazones", "Rombos", "Trebol");
-    lateinit var ultimaCarta: Carta;
+    lateinit var cartaCentral: Carta;
 
     constructor() {
         this.crearBaraja();
         this.barajar();
-        this.ultimaCarta = this.getFirstCarta();
+        this.cartaCentral = this.getFirstCarta();
     }
 
     fun crearBaraja() {
