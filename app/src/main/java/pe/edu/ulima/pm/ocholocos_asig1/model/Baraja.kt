@@ -5,7 +5,7 @@ public class Baraja {
     private val limitePalos: Int = 13;
     private val numCartas: Int = 52;
     private val palos = arrayOf("Espadas", "Corazones", "Rombos", "Trebol");
-    lateinit var cartaCentral: Carta;
+    var cartaCentral: Carta;
 
     constructor() {
         this.crearBaraja();
@@ -16,7 +16,6 @@ public class Baraja {
     fun crearBaraja() {
         for (i in palos.indices) {
             for (j in 0 until limitePalos) {
-
                 when (j) {
                     13 -> this.cartas.add(Carta(j + 1, palos[i], Efecto.MASTRES));
                     11 -> this.cartas.add(Carta(j + 1, palos[i], Efecto.SALTO));
@@ -39,6 +38,10 @@ public class Baraja {
         }
     }
 
+    fun addCarta(carta:Carta){
+        this.cartas.add(carta);
+    }
+
     fun getFirstCarta(): Carta {
         var c: Carta = cartas[0];
         cartas.removeAt(0)
@@ -46,15 +49,15 @@ public class Baraja {
     }
 
     fun getListofCartas(numCartas: Int): MutableList<Carta>? {
-        if (numCartas > this.cartas.size) {
+        return if (numCartas > this.cartas.size) {
             // no se pueden repartir cartas
-            return null;
+            null;
         } else {
             var mazo = mutableListOf<Carta>();
             for (i in 0 until numCartas) {
                 mazo.add(this.getFirstCarta());
             }
-            return mazo;
+            mazo;
         }
     }
 }

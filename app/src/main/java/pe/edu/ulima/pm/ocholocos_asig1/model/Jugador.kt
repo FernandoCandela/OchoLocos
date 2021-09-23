@@ -4,9 +4,15 @@ class Jugador (var nombre: String,var gano: Boolean , var cartas : MutableList<C
 
     fun getCartaByIndex(index: Int): Carta {
         var c: Carta = cartas[index];
-        cartas.removeAt(index)
         return c;
     }
+    fun removeCartaByIndex(index: Int) {
+        cartas.removeAt(index);
+    }
+    fun addCarta(carta:Carta){
+        this.cartas.add(carta);
+    }
+
     fun addCartas(cartas :MutableList<Carta>){
         this.cartas.let { list1 -> cartas.let(list1::addAll) }
     }
