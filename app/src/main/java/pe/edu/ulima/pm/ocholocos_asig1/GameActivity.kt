@@ -26,15 +26,17 @@ class GameActivity : AppCompatActivity() {
         findViewById<Baraja>(R.id.idBaraja).setOnClickListener { v: View ->
             robarCarta();
             setManoJugadores();
+            setManoOnClick();
         }
         findViewById<Button>(R.id.butPasar).setOnClickListener { v: View ->
             pasarJugador();
+            setManoJugadores();
+            setManoOnClick();
         }
         findViewById<Button>(R.id.butCancelar).setOnClickListener { v: View ->
             setResult(RESULT_CANCELED)
             finish()
         }
-
     }
 
     fun inicioJuego() {
@@ -120,8 +122,8 @@ class GameActivity : AppCompatActivity() {
         for (jugador in jugadores) {
             jugador.visibility = View.GONE;
         }
-        siguienteJugador().visibility = View.VISIBLE;
-        findViewById<TextView>(R.id.txtJugador).text = siguienteJugador().nombre;
+        jugadorActual().visibility = View.VISIBLE;
+        findViewById<TextView>(R.id.txtJugador).text = jugadorActual().nombre;
     }
 
     fun pasarJugador() {
@@ -167,7 +169,8 @@ class GameActivity : AppCompatActivity() {
         return if (cartaJ.compatible(cartaC)) {
             if (jugadorActual().cartas.size == 0) {
                 jugadorActual().gano = true;
-                //acabar el juego
+                setResult(RESULT_OK)
+                finish()
             }
             jugadorActual().removeCarta();
             cartaJ.isSelect = false;
