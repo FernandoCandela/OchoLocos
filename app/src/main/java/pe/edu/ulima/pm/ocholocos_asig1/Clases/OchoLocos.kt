@@ -1,7 +1,7 @@
-package pe.edu.ulima.pm.ocholocos_asig1.model
+package pe.edu.ulima.pm.ocholocos_asig1.Clases
 
 class OchoLocos {
-    var ronda: Int = 1;
+    /*var ronda: Int = 1;
     var turno: Int = 0;
     var baraja: Baraja = Baraja();
     var jugadores: MutableList<Jugador> = mutableListOf();
@@ -90,7 +90,6 @@ class OchoLocos {
 
         }
 
-    }
-
+    }*/
 
 }

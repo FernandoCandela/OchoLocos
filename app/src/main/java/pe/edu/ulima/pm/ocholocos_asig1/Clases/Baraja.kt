@@ -1,13 +1,18 @@
-package pe.edu.ulima.pm.ocholocos_asig1.model
+package pe.edu.ulima.pm.ocholocos_asig1.Clases
 
-public class Baraja {
+import android.content.Context
+import android.util.AttributeSet
+
+class Baraja(context: Context, atrs: AttributeSet) :
+    androidx.appcompat.widget.AppCompatImageView(context, atrs) {
+    private val atrs: AttributeSet = atrs;
     private var cartas = mutableListOf<Carta>();
     private val limitePalos: Int = 13;
     private val numCartas: Int = 52;
-    private val palos = arrayOf("Espadas", "Corazones", "Rombos", "Trebol");
+    private val palos = arrayOf("espadas", "corazones", "diamantes", "trebol");
     var cartaCentral: Carta;
 
-    constructor() {
+    init {
         this.crearBaraja();
         this.barajar();
         this.cartaCentral = this.getFirstCarta();
@@ -17,10 +22,26 @@ public class Baraja {
         for (i in palos.indices) {
             for (j in 0 until limitePalos) {
                 when (j) {
-                    13 -> this.cartas.add(Carta(j + 1, palos[i], Efecto.MASTRES));
-                    11 -> this.cartas.add(Carta(j + 1, palos[i], Efecto.SALTO));
+                    13 -> this.cartas.add(
+                        Carta(
+                            j + 1,
+                            palos[i],
+                            Efecto.MASTRES,
+                            this.context,
+                            this.atrs
+                        )
+                    );
+                    11 -> this.cartas.add(
+                        Carta(
+                            j + 1,
+                            palos[i],
+                            Efecto.SALTO,
+                            this.context,
+                            this.atrs
+                        )
+                    );
                     else -> {
-                        this.cartas.add(Carta(j + 1, palos[i], null));
+                        this.cartas.add(Carta(j + 1, palos[i], null, this.context, this.atrs));
                     }
                 }
             }
