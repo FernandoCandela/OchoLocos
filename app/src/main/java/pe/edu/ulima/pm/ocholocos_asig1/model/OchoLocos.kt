@@ -19,7 +19,6 @@ class OchoLocos {
         for (jugador in this.jugadores){
             this.baraja.getListofCartas(8)?.let { jugador.addCartas(it) };
         }
-
     }
 
     fun jugadorActual(): Jugador {
