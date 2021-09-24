@@ -22,7 +22,7 @@ class Baraja(context: Context, atrs: AttributeSet) :
         for (i in palos.indices) {
             for (j in 0 until limitePalos) {
                 when (j) {
-                    13 -> this.cartas.add(
+                    12 -> this.cartas.add(
                         Carta(
                             j + 1,
                             palos[i],
@@ -31,7 +31,7 @@ class Baraja(context: Context, atrs: AttributeSet) :
                             this.atrs
                         )
                     );
-                    11 -> this.cartas.add(
+                    10 -> this.cartas.add(
                         Carta(
                             j + 1,
                             palos[i],

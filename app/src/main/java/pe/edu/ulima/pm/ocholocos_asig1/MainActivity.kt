@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
         if (requestCode == 10) {
             if (resultCode == RESULT_OK) {
-                Toast.makeText(this, "El Ganador es :  ", Toast.LENGTH_LONG).show()
+
             } else {
                 Toast.makeText(this, "Juego cancelado :(", Toast.LENGTH_LONG).show()
 

@@ -37,17 +37,18 @@ class GameActivity : AppCompatActivity() {
             setResult(RESULT_CANCELED)
             finish()
         }
+        findViewById<Button>(R.id.butPasar).setEnabled(false);
     }
 
     fun inicioJuego() {
         baraja = findViewById(R.id.idBaraja);
 
         var jugador1 = findViewById<Jugador>(R.id.Jugador1);
-        jugador1.nombre = "Jugador1";
+        jugador1.nombre = "JUGADOR 1";
         var jugador2 = findViewById<Jugador>(R.id.Jugador2);
-        jugador2.nombre = "Jugador2";
+        jugador2.nombre = "JUGADOR 2";
         var jugador3 = findViewById<Jugador>(R.id.Jugador3);
-        jugador3.nombre = "Jugador3";
+        jugador3.nombre = "JUGADOR 3";
         jugadores.add(jugador1);
         jugadores.add(jugador2);
         jugadores.add(jugador3);
@@ -124,11 +125,13 @@ class GameActivity : AppCompatActivity() {
         }
         jugadorActual().visibility = View.VISIBLE;
         findViewById<TextView>(R.id.txtJugador).text = jugadorActual().nombre;
+
     }
 
     fun pasarJugador() {
         cambioTurno();
         cargarCartasJugador();
+        findViewById<Button>(R.id.butPasar).setEnabled(false);
     }
 
     fun cambioTurno() {
@@ -143,7 +146,7 @@ class GameActivity : AppCompatActivity() {
         var cartaC: Carta = baraja.cartaCentral;
         var sigJugador: Jugador;
         var cartas: MutableList<Carta>;
-        if (cartaC.efecto == Efecto.MASTRES) {
+        if (cartaC.efecto === Efecto.MASTRES) {
             sigJugador = if (inicio) jugadorActual() else siguienteJugador();
             cartas = baraja.getListofCartas(3)!!;
             sigJugador.addCartas(cartas);
@@ -167,10 +170,23 @@ class GameActivity : AppCompatActivity() {
         var cartaJ: Carta = jugadorActual().getCartaSelect()!!;
         var cartaC: Carta = baraja.cartaCentral;
         return if (cartaJ.compatible(cartaC)) {
-            if (jugadorActual().cartas.size == 0) {
-                jugadorActual().gano = true;
-                setResult(RESULT_OK)
-                finish()
+            if (jugadorActual().cartas.size - 1 === 1) {
+                Toast.makeText(
+                    this,
+                    "El jugador: " + jugadorActual().nombre + " tiene una carta",
+                    Toast.LENGTH_LONG
+                ).show()
+            } else {
+                if (jugadorActual().cartas.size - 1 == 0) {
+                    jugadorActual().gano = true;
+                    Toast.makeText(
+                        this,
+                        "El ganador es:  " + jugadorActual().nombre,
+                        Toast.LENGTH_LONG
+                    ).show()
+                    setResult(RESULT_OK)
+                    finish()
+                }
             }
             jugadorActual().removeCarta();
             cartaJ.isSelect = false;
@@ -188,10 +204,10 @@ class GameActivity : AppCompatActivity() {
         }
     }
 
-
     fun robarCarta() {
         var carta: Carta = baraja.getFirstCarta();
         jugadorActual().addCarta(carta);
+        findViewById<Button>(R.id.butPasar).setEnabled(true);
     }
 
 }
