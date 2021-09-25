@@ -150,6 +150,7 @@ class GameActivity : AppCompatActivity() {
             sigJugador = if (inicio) jugadorActual() else siguienteJugador();
             cartas = baraja.getListofCartas(3)!!;
             sigJugador.addCartas(cartas);
+            setManoOnClick();
         } else {
             //Efecto.SALTO
             cambioTurno();
